@@ -1,0 +1,1 @@
+UPDATE user_role SET id_role = 2 WHERE id_user = 1
