@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj": {}
+    "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj": {
+    "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj",
+        "projectUniqueName": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj",
         "projectName": "StudyGroup",
-        "projectPath": "C:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj",
+        "projectPath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj",
         "packagesPath": "C:\\Users\\DonEn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\obj\\",
+        "outputPath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -42,6 +42,16 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
