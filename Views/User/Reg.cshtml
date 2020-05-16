@@ -1,0 +1,61 @@
+@{
+    ViewData["Title"] = "Registration";
+}
+
+@await Component.InvokeAsync("Menu" , new {})
+
+ @if(Model == 1)
+    {
+        <h4>Пароли не совпадают</h4>
+    }
+@if(Model == 2)
+    {
+        <h4>Данный логин уже зарегистрирован</h4>
+    }
+@if(Model == 3)
+    {
+        <h4>Данный E-mail уже зарегистрирован</h4>
+    }
+@if(Model == 4)
+    {
+        <h4>Введите правельно  E-mail</h4>
+    }
+@if(Model == 5)
+    {
+        <h4>Пароль должен быть больше 8 символов </h4>
+    }
+
+<form method="post" asp-controller="User" asp-action="Reg">
+
+
+
+    <div class="registration">
+        
+
+        <div class="form-group">
+            <label for="mail">E-mail</label>
+            <input  required type="text" class="form-control" name="_mail" value="@ViewBag.reg_mail" aria-describedby="Mail" placeholder="mail" >
+            <!-- <small id="mailHelp" class="form-text text-muted">We'll never share your mail with anyone else.</small> -->
+        </div>
+
+        <div class="form-group">
+            <label for="login">login</label>
+            <input required type="text" class="form-control" name="_login" value="@ViewBag.reg_login" aria-describedby="Логин" placeholder="login">
+            <!-- <small id="loginHelp" class="form-text text-muted">We'll never share your login with anyone else.</small> -->
+        </div>
+
+        <div class="form-group">
+            <label for="password">password</label>
+            <input required type="password" class="form-control" name="_password" placeholder="password">
+        </div>
+
+        <div class="form-group">
+            <label for="password">password</label>
+            <input required type="password" class="form-control" name="_password2" placeholder="password">
+        </div>
+  </div>
+    
+    
+
+    <button class = "btn btn-sm-2 btn-dark" type="submit">зарегистрироваться</button>
+</form>

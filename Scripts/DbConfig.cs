@@ -14,12 +14,12 @@ namespace  StudyGroup.Script
         {
             conn.Open();
         }
-        public List<List<string>> GetSqlQuaryData(string _sqlCommand) 
+        public IEnumerable<List<string>> GetSqlQuaryData(string _sqlCommand)  // here need use yeld return 
         {
             var sqlData = new List<List<string>>();
             var row = new List<string>();
             var command = new NpgsqlCommand(_sqlCommand, conn);
-            NpgsqlDataReader dr = command.ExecuteReader();
+            var dr = command.ExecuteReader();
 
             while(dr.Read())
             {
@@ -27,11 +27,11 @@ namespace  StudyGroup.Script
                 row = new List<string>();
                 for(int i =0 ; i< count ;i++)
                     row.Add(dr[i].ToString());
-                sqlData.Add(row);
+               yield return row;
             }
             dr.Close();
-            return sqlData;
         }
+
         public void UseSqlQuary(string _sqlCommand) {
            var command =  new NpgsqlCommand(_sqlCommand, conn);
            var dr  = command.ExecuteReader();

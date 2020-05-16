@@ -35,3 +35,12 @@ C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\StudyGroup.dll
 C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\StudyGroup.pdb
 C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\StudyGroup.genruntimeconfig.cache
 C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\StudyGroup.csproj.CopyComplete
+C:\Users\DonEn\Desktop\Git\StudyGroup\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+C:\Users\DonEn\Desktop\Git\StudyGroup\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\DonEn\Desktop\Git\StudyGroup\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\DonEn\Desktop\Git\StudyGroup\bin\Debug\netcoreapp3.1\Npgsql.dll
+C:\Users\DonEn\Desktop\Git\StudyGroup\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Menu\Default.cshtml.g.cs
+C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\Razor\Views\User\Authorization.cshtml.g.cs
+C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\Razor\Views\User\Profile.cshtml.g.cs
+C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\Razor\Views\User\Reg.cshtml.g.cs

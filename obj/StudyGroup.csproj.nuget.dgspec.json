@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj": {}
+    "C:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj": {}
   },
   "projects": {
-    "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj": {
+    "C:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj",
+        "projectUniqueName": "C:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj",
         "projectName": "StudyGroup",
-        "projectPath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj",
+        "projectPath": "C:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\StudyGroup.csproj",
         "packagesPath": "C:\\Users\\DonEn\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\obj\\",
+        "outputPath": "C:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

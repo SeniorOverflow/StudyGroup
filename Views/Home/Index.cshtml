@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@await Component.InvokeAsync("Menu" , new {})
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>

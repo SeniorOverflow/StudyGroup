@@ -17868,6 +17868,31 @@
         }
       },
       {
+        "Kind": "MVC.ViewComponent",
+        "Name": "__Generated__MenuViewComponentTagHelper",
+        "AssemblyName": "StudyGroup",
+        "Documentation": null,
+        "TagOutputHint": null,
+        "CaseSensitive": false,
+        "TagMatchingRules": [
+          {
+            "TagName": "vc:menu",
+            "ParentTag": null,
+            "TagStructure": 0,
+            "Attributes": [],
+            "Diagnostics": []
+          }
+        ],
+        "BoundAttributes": [],
+        "AllowedChildTags": [],
+        "Diagnostics": [],
+        "Metadata": {
+          "Runtime.Name": "ITagHelper",
+          "Common.TypeName": "__Generated__MenuViewComponentTagHelper",
+          "MVC.ViewComponent.Name": "Menu"
+        }
+      },
+      {
         "Kind": "Components.Bind",
         "Name": "Bind",
         "AssemblyName": "Microsoft.AspNetCore.Components",
@@ -20521,6 +20546,11 @@
   "RootNamespace": "StudyGroup",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Shared\\Components\\Menu\\Default.cshtml",
+      "TargetPath": "Views\\Shared\\Components\\Menu\\Default.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
@@ -20528,6 +20558,16 @@
     {
       "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\User\\Authorization.cshtml",
+      "TargetPath": "Views\\User\\Authorization.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\User\\Profile.cshtml",
+      "TargetPath": "Views\\User\\Profile.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20548,6 +20588,11 @@
     {
       "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\User\\Reg.cshtml",
+      "TargetPath": "Views\\User\\Reg.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -1,0 +1,49 @@
+
+@{
+    ViewData["Title"] = "Authorisation";
+}
+
+@await Component.InvokeAsync("Menu" , new {})
+<form method="post" asp-controller="User" asp-action="LogIn">
+    @if(@ViewBag.AutoData.ex == 1)
+    {
+        <p>Логин  или пароль не найден  !!! @Model</p>
+    }
+
+    @if(ViewBag.AutoData.ex == 2)
+    {
+        <p>Пароль не найден  !!! @Model</p>
+    }
+    @if(ViewBag.AutoData.ex == 3)
+    {
+        <p>Вы успешно зарегистрированы  </p>
+    }
+    @if(ViewBag.AutoData.ex == 4)
+    {
+        <p>Введите Логин </p>
+    }
+    @if(ViewBag.AutoData.ex == 5)
+    {
+        <p>Введите Пароль</p>
+    }
+    @if(ViewBag.AutoData.count > 10)
+    {
+        <p>Введите капчу </p>
+    }
+  <div class="autorisation">
+    <div class="form-group">
+        <label for="login">Логин</label>
+        <input type="login" class="form-control" name="login" aria-describedby="loginHelp" placeholder="login">
+        <small id="loginHelp" class="form-text text-muted">Мы не передаем информацию третьим лицам.</small>
+    </div>
+    <div class="form-group">
+        <label for="password">Пароль</label>
+        <input type="password" class="form-control" name="password" placeholder="password">
+    </div>
+  </div>
+  
+  <button type="submit" class="btn btn-sm-2 btn-dark">Войти</button>
+
+    <a  method ="get" asp-controller="User" asp-action="Reg" class="btn btn-sm-2 btn-dark">зарегистрироваться</a>
+    
+</form>

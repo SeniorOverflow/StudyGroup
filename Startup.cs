@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StudyGroup.Script;
 
 namespace StudyGroup
 {
@@ -16,14 +17,29 @@ namespace StudyGroup
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            string dbConnection = 
+                            "User ID  = postgres; "+
+                            "Password = postgres; "+
+                            "Server   = localhost; "+
+                            "Port     = 5432; "+
+                            "Database = studygroup;"+
+                            "Integrated Security = true; "+
+                            "Pooling  = true;" ;
+            DbConfig.SetStringConnection(dbConnection);
+            DbConfig.OpenConnection();
         }
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+             services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromSeconds(3600);//For fast test need value 10
+                options.Cookie.HttpOnly = true;
+             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +59,7 @@ namespace StudyGroup
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
