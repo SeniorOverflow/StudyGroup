@@ -10,8 +10,8 @@ namespace  StudyGroup.Script
         void SetScr()
         {
             Random rnd = new Random();
-            var GUIDCode = new Guid();
-            this.scr = "$a" + GUIDCode + "a$";
+            var randomValue = rnd.Next()+ 99999;
+            this.scr = "$a" + randomValue + "a$";
         }
 
         public string GetScr() => this.scr;

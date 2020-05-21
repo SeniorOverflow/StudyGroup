@@ -24,16 +24,12 @@ namespace StudyGroup.Controllers
                 login == null 
                 ? HttpContext.Session.GetString("login") 
                 : login;
-            
+                
             var sqlQuary = "select id from users where login = " +sr.GetScr()+login+sr.GetScr();
-            
-            var userData = db.GetSqlQuaryData(sqlQuary);
-            if(userData.Count() == 0)
-                return -1;
-            var user = userData.First();
-            var idUser = user[0];
-            return Convert.ToInt32(idUser);
-            
+            var usersData = db.GetSqlQuaryData(sqlQuary).First();
+            if(usersData.Count() > 0)
+                return Convert.ToInt32(usersData[0]);
+            return -1;
         }
 
         private bool IsRegisterEmail(string Email)
@@ -41,8 +37,7 @@ namespace StudyGroup.Controllers
             var db = new DbConfig();
             var sr  = new Screening();
             var sqlQuary = "select id from users where mail = " +sr.GetScr()+Email+sr.GetScr(); 
-
-            var userData = db.GetSqlQuaryData(sqlQuary).First();
+            var userData = db.GetSqlQuaryData(sqlQuary);
             if(userData.Count() > 0)
                 return true;
             return false;
