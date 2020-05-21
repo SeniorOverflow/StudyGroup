@@ -5,6 +5,7 @@ namespace  StudyGroup.Script
 {
      class   DbConfig
     {
+        static int idOp ;
         static NpgsqlConnection conn;
         public static void SetStringConnection(string unSaveStringConnection)
         {
@@ -16,9 +17,12 @@ namespace  StudyGroup.Script
         }
         public IEnumerable<List<string>> GetSqlQuaryData(string _sqlCommand)  // here need use yeld return 
         {
+            int thisId= idOp;
+            idOp++;
             var sqlData = new List<List<string>>();
             var row = new List<string>();
             var command = new NpgsqlCommand(_sqlCommand, conn);
+            Console.WriteLine("Open " + thisId + " - "  + _sqlCommand);
             var dr = command.ExecuteReader();
 
             while(dr.Read())
@@ -27,10 +31,12 @@ namespace  StudyGroup.Script
                 row = new List<string>();
                 for(int i =0 ; i< count ;i++)
                     row.Add(dr[i].ToString());
-               yield return row;
+                yield return row;
             }
+            Console.WriteLine("Close " + thisId);
             dr.Close();
         }
+       
 
         public void UseSqlQuary(string _sqlCommand) {
            var command =  new NpgsqlCommand(_sqlCommand, conn);

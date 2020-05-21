@@ -26,10 +26,10 @@ namespace StudyGroup.Controllers
                 : login;
                 
             var sqlQuary = "select id from users where login = " +sr.GetScr()+login+sr.GetScr();
-            var usersData = db.GetSqlQuaryData(sqlQuary).First();
-            if(usersData.Count() > 0)
-                return Convert.ToInt32(usersData[0]);
-            return -1;
+            var idUser = -1;
+            foreach(var userData in db.GetSqlQuaryData(sqlQuary))
+                idUser = Convert.ToInt32(userData[0]);
+            return idUser;
         }
 
         private bool IsRegisterEmail(string Email)
@@ -71,7 +71,8 @@ namespace StudyGroup.Controllers
         public async Task<IActionResult> LogOut() 
         {
             HttpContext.Session.Clear();
-            return await Task.Run(() => RedirectToAction("Index"));
+             return await Task.Run(() => RedirectToAction("Index", new RouteValueDictionary( 
+                        new { controller = "Home", action = "Index"} )));
         }
 
         [HttpGet]
@@ -86,6 +87,24 @@ namespace StudyGroup.Controllers
             ViewBag.Data_name = data_words;
             return await Task.Run(() => View(type));
         }
+
+        public async Task<IActionResult> Homeworks ()
+        {
+            return await Task.Run(() => View());
+        }
+         public async Task<IActionResult> Groups ()
+         {
+             return await Task.Run(() => View());
+         }
+         public async Task<IActionResult> Assessents ()
+         {
+
+             return await Task.Run(() => View());
+         }
+         public async Task<IActionResult> Timetable ()
+         {
+             return await Task.Run(() => View());
+         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -185,25 +204,25 @@ namespace StudyGroup.Controllers
             {
                 var id_user = GetUserId();
                 var _user = new User();
-                _user.is_dev = false;
                 var tmp_login = new List<List<string>>();
-              
-                var  userData = 
-                db.GetSqlQuaryData("SELECT id,login,score,first_name,second_name,bonus_score,picture_profile "+
-                                        "FROM users WHERE users.id = "+id_user ).First();
+                Console.WriteLine(GetUserId());
+                var  sqlQuary = "SELECT id,login,first_name,second_name,picture_profile "+
+                                        "FROM users WHERE users.id = "+id_user;
+                var userData = new List<string>();
+                foreach (var item in db.GetSqlQuaryData(sqlQuary))
+                    userData = item;
+
+                Console.WriteLine(" # " + userData[0] + " - "  + userData[1] + " - "  + userData[2] +" - "  + userData[3] + " - "  + userData[4] );
+                
                 if(userData.Count()>0)
                 {
                         _user.id_user= Convert.ToInt32(userData[0]);
                         _user.login= Convert.ToString(userData[1]);
-                        
-                        _user.score= Convert.ToDouble(userData[2]);
-                        _user.first_name = userData[3];
-                        _user.second_name= userData[4];
-                        _user.bonus_score = Convert.ToDouble(userData[5]);
-                        _user.picture_profile = userData[6];
-                       
+
+                        _user.first_name = userData[2];
+                        _user.second_name= userData[3];
+                        _user.picture_profile = userData[4];
                         ViewBag.User_data = _user;
-                        
                     return View();
                 }
             }
@@ -217,9 +236,14 @@ namespace StudyGroup.Controllers
             var sr = new Screening();
             var db = new DbConfig();
             var login = HttpContext.Session.GetString("login");
-            var userData = 
+            var usersData = 
             db.GetSqlQuaryData("SELECT first_name,second_name,picture_profile FROM users "+ 
-                    " WHERE users.login = "+sr.GetScr()+login+sr.GetScr()).First();
+                    " WHERE users.login = "+sr.GetScr()+login+sr.GetScr());
+            var userData  = new List<string>();
+            foreach (var item in usersData)
+                userData = item;
+                
+            
             var user = new User();
             
             user.first_name = userData[0];

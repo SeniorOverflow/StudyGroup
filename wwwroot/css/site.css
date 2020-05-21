@@ -9,8 +9,21 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+  color: #242424;
+  text-decoration: none;
 }
+a:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+.leftmenu {
+  position: relative;
+  width: 200px;
+  height:  100%;
+  float: left;
+}
+
 
 .btn-primary {
   color: #fff;

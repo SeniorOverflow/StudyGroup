@@ -3,7 +3,7 @@
     ViewData["Title"] = "Authorisation";
 }
 
-@await Component.InvokeAsync("Menu" , new {})
+
 <form method="post" asp-controller="User" asp-action="LogIn">
     @if(@ViewBag.AutoData.ex == 1)
     {

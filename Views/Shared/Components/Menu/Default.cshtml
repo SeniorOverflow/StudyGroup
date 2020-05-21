@@ -1,77 +1,27 @@
 
-        <nav class=" navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <!--1-->
-                <div class="nav-item">
-                  <a class="navbar-brand" asp-controller="Home" asp-action="Index">Study Group</a> 
-                </div>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <!--2-->
-                        <li class="nav-item">
-                             <a class="nav-link" asp-area="" asp-controller="User" asp-action="ShowCategories">Категории</a> 
-                        </li>
-                      @{
-                          bool is_user  = false;
-                      }
-                        
-                      @foreach (var role in @ViewBag.User.types_user )
-                      {
-                          @if(role == -1)
-                          {
-                            <li class="nav-item">
-                              
-                               <a class="nav-link" asp-area="" asp-controller="User" asp-action="Authorization">Войти </a> 
-                            </li>
-                          }
-                         
-                          @if(role == 1)
-                          {
-                            is_user = true;
-                            <li class="nav-item">
-                              <a class="nav-link" asp-area="" asp-controller="User" asp-action="LogOut">Выйти</a> 
-                            </li>
-                            <li class="nav-item">
-                              
-                               <a   asp-controller="User" asp-action="Profile" class="nav-link">Профиль</a>
-                            </li>
-                          }
-                          @if(role == 2)
-                          {
-                            <li class="nav-item">
-                              <a   asp-controller="Admin" asp-action="Index" class="nav-link">Инструменты</a>
-                            </li>
-                         
-                          }
 
-                      }
-                    </ul>       
-                </div>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-            
-        
-        
-        <div   class="form-inline form_search">
-          
-
-          <form method="get" asp-controller="User" asp-action="SearchProduct"  class="form_line">
-            <ul class="navbar-nav flex-grow-1"> 
-              <li class="nav-item">     
-               <input class="form-control mr-sm-2 search_line" type="search"
-                name="name_product" placeholder="Search" aria-label="Search" value="@ViewBag.Search_product_name"> 
-              </li>
-              <li class="nav-item">     
-               <button type="submit"  class="btn btn-sm-2 btn-dark">Поиск</button>
-              </li>
-            <ul class="navbar-nav flex-grow-1"> 
-          </form>  
-                                
-        </div>
-       
-        </nav>
-        
+<nav class="nav flex-column navbar-light">
+  <ul class="navbar-nav">
+    <li  class="nav-item">
+      <a  class="nav-link active" asp-controller="Home" asp-action="Index"><h2>Study Group</h2></a> 
+    </li>
+    @if(@ViewBag.isAuthorizationUser)
+     {
+      @foreach (var itemMenu in @ViewBag.Menu )
+        {
+          <li class="nav-item" >
+            <a class="nav-link active" asp-controller="@itemMenu[1]" asp-action="@itemMenu[2]"><h5>@itemMenu[0]</h5></a> 
+          </li>
+        }
+      }
+    else
+    {
+       <li class="nav-item" >
+         @foreach (var itemMenu in @ViewBag.Menu )
+         {
+          <a  asp-controller="@itemMenu[1]" asp-action="@itemMenu[2]">@itemMenu[0]</a>
+         }
+       </li>
+    }
+  </ul>
+</nav>

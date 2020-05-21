@@ -1,18 +1,18 @@
-@await Component.InvokeAsync("Menu" , new {})
+
 <h1>Личный кабинет</h1>
 
 
 <div class="media">
   <img class="mr-3" src="~/Pictures/@ViewBag.User_data.picture_profile" alt="Generic placeholder image" width="128px" height="128px">
   <div class="media-body">
-    <h5>@ViewBag.Translate_words[28]: @ViewBag.User_data.login</h5>
-    <h5>@ViewBag.Translate_words[22]: @ViewBag.User_data.first_name @ViewBag.User_data.second_name</h5>
-    <h5>@ViewBag.Translate_words[52]: @ViewBag.User_data.score у. е.</h5>
+    <h5>Login: @ViewBag.User_data.login</h5>
+    <h5>Name: @ViewBag.User_data.first_name @ViewBag.User_data.second_name</h5>
+
   </div>
   
   <div>
     <form method="post" asp-controller="User" asp-action="UpdateInfo_page"  class="form_line">
-        <button type="submit"  class="btn btn-sm-2 btn-dark">@ViewBag.Translate_words[55]</button>
+        <button type="submit"  class="btn btn-sm-2 btn-dark">Update Info]</button>
     </form>
   </div>
 </div>
