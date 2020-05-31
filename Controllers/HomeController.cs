@@ -20,8 +20,6 @@ namespace StudyGroup.Controllers
             return await Task.Run(() => View());
         }
 
-       
-        
         [HttpGet]
         public async Task<IActionResult> Privacy()
         {

@@ -88,8 +88,20 @@ namespace StudyGroup.Controllers
             return await Task.Run(() => View(type));
         }
 
+        
         public async Task<IActionResult> Homeworks ()
         {
+
+            var db = new DbConfig();
+            var sqlCommand = 
+            "";
+            var homeworks  = new List<List<string>>();
+
+            foreach(var homework in db.GetSqlQuaryData(sqlCommand))
+            {
+                homeworks.Add(homework);
+            }
+           
             return await Task.Run(() => View());
         }
          public async Task<IActionResult> Groups ()
@@ -189,7 +201,7 @@ namespace StudyGroup.Controllers
             
         }
 
-        public IActionResult Profile() 
+        public IActionResult Profile() // добавить возможность просмотра других пользователей
         {
             var sr  = new Screening();
             var db = new DbConfig();

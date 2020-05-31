@@ -44,3 +44,7 @@ C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\Razor\Views\Shared
 C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\Razor\Views\User\Authorization.cshtml.g.cs
 C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\Razor\Views\User\Profile.cshtml.g.cs
 C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\Razor\Views\User\Reg.cshtml.g.cs
+C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\Razor\Views\User\Assessents.cshtml.g.cs
+C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\Razor\Views\User\Groups.cshtml.g.cs
+C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\Razor\Views\User\Homeworks.cshtml.g.cs
+C:\Users\DonEn\Desktop\Git\StudyGroup\obj\Debug\netcoreapp3.1\Razor\Views\User\Timetable.cshtml.g.cs

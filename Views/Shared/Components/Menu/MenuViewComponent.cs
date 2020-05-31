@@ -19,7 +19,7 @@ namespace  StudyGroup.Views.Components.Menu
             new List<string> {"Sing Up","User" ,  "Reg"},
             new List<string> {"", "User" ,  "Profile"},
             new List<string> {"Sign out","User" ,  "LogOut"},
-            new List<string> {"Homeworks", "User" , "YourHomeworks"},
+            new List<string> {"Homeworks", "User" , "Homeworks"},
             new List<string> {"Groups", "User" ,     "Groups"},
             new List<string> {"Assessents", "User" ,        "Assessents"},
             new List<string> {"Timetable of classes", "User" , "Timetable"}

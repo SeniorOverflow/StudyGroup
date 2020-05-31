@@ -20551,6 +20551,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Group\\ShowGroup.cshtml",
+      "TargetPath": "Views\\Group\\ShowGroup.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\User\\Homeworks.cshtml",
+      "TargetPath": "Views\\User\\Homeworks.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
@@ -20566,6 +20576,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Group\\CreateGroup.cshtml",
+      "TargetPath": "Views\\Group\\CreateGroup.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\User\\Profile.cshtml",
       "TargetPath": "Views\\User\\Profile.cshtml",
       "FileKind": "mvc"
@@ -20576,8 +20591,38 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\User\\Timetable.cshtml",
+      "TargetPath": "Views\\User\\Timetable.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Group\\AddMaterial.cshtml",
+      "TargetPath": "Views\\Group\\AddMaterial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Group\\AddTest.cshtml",
+      "TargetPath": "Views\\Group\\AddTest.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Group\\ShowForum.cshtml",
+      "TargetPath": "Views\\Group\\ShowForum.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Group\\ShowQuestion.cshtml",
+      "TargetPath": "Views\\Group\\ShowQuestion.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Group\\AddGroupPost.cshtml",
+      "TargetPath": "Views\\Group\\AddGroupPost.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20596,8 +20641,33 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\User\\Groups.cshtml",
+      "TargetPath": "Views\\User\\Groups.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Group\\AddQuestion.cshtml",
+      "TargetPath": "Views\\Group\\AddQuestion.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Group\\AddHomeWork.cshtml",
+      "TargetPath": "Views\\Group\\AddHomeWork.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Group\\ShowGroupAssessments.cshtml",
+      "TargetPath": "Views\\Group\\ShowGroupAssessments.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\User\\Assessents.cshtml",
+      "TargetPath": "Views\\User\\Assessents.cshtml",
       "FileKind": "mvc"
     }
   ],
