@@ -16,12 +16,27 @@ namespace StudyGroup.Controllers
 {
     public class UserController : Controller
     {
+        private int GetUserAssessment(int idUser, int idHomework)
+        { 
+            var db = new  DbConfig();
+            var sr = new  Screening();
+            var assessment = 0;
+            var sqlQuary = "SELECT assessment " + 
+	                        " FROM h_assessment "  +
+	                        " WHERE id_user   =  " + sr.GetScr() + idUser + sr.GetScr() + 
+                            " and  id_homework = " + sr.GetScr() + idHomework+ sr.GetScr();
+            
+            foreach(var item in db.GetSqlQuaryData(sqlQuary))
+                assessment += Int32.Parse(item[0]);
+
+            return assessment;   
+        }
         private int GetUserId(string login = null) 
         {
             var db = new DbConfig();
             var sr  = new Screening();
             login = 
-                login == null 
+                string.IsNullOrEmpty(login)
                 ? HttpContext.Session.GetString("login") 
                 : login;
                 
@@ -42,10 +57,7 @@ namespace StudyGroup.Controllers
                 return true;
             return false;
         }
-        public async Task<IActionResult> Index()
-        {
-            return await Task.Run(() =>  View());
-        }
+      
          [HttpGet]
         public async Task<IActionResult> Authorization(int ex = 0)
         {
@@ -88,25 +100,43 @@ namespace StudyGroup.Controllers
             return await Task.Run(() => View(type));
         }
 
-        
-        public async Task<IActionResult> Homeworks ()
+        [HttpGet]
+        public async Task<IActionResult> Homeworks () // Можно переделать  через группу но и так работает
         {
-
             var db = new DbConfig();
+            var userId = GetUserId(); 
             var sqlCommand = 
-            "";
-            var homeworks  = new List<List<string>>();
+                "SELECT homeworks.id, title, deadline, homeworks.url_on_file, type , assessment " + 
+	                " FROM homeworks inner join  h_assessment on homeworks.id = h_assessment.id_homework " + 
+	            " WHERE id_user = " + userId;
+            var homeworks  = new List<Homework>();
 
-            foreach(var homework in db.GetSqlQuaryData(sqlCommand))
+            foreach(var item in db.GetSqlQuaryData(sqlCommand))
             {
+                var idHomework = Int32.Parse(item[0]);
+                var homework = new Homework(idHomework);
+                homework.title = item[1];
+                homework.dateEnd =  item[2];
+
                 homeworks.Add(homework);
             }
-           
+
+            foreach(var homework in homeworks)
+            {
+                var idHomework = homework.GetHomeworkId;
+                homework.assessment = GetUserAssessment(userId, idHomework );
+            }
+
+            ViewBag.Homeworks = homeworks;
             return await Task.Run(() => View());
         }
+
+        [HttpGet]
          public async Task<IActionResult> Groups ()
          {
-             return await Task.Run(() => View());
+            var db = new DbConfig();
+            
+            return await Task.Run(() => View());
          }
          public async Task<IActionResult> Assessents ()
          {

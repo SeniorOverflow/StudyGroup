@@ -16,7 +16,11 @@ namespace StudyGroup.Controllers
     public class HomeController : Controller
     {   
         public async Task<IActionResult> Index(int numb_page = 0)
-        {
+        {   
+            var login = HttpContext.Session.GetString("login");
+            var isNotUser = string.IsNullOrEmpty(login);
+
+            ViewBag.isNotUser = isNotUser;
             return await Task.Run(() => View());
         }
 

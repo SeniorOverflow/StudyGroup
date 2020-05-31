@@ -114,7 +114,12 @@ namespace StudyGroup.Controllers
             return await Task.Run(() => View());
         }
 
-
+        [HttpGet]
+        public async Task<IActionResult> SearchGroup(string name = null)
+        {
+            return await Task.Run(() => View());
+        }
+        
         
 
 

@@ -20596,6 +20596,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Group\\SearchGroup.cshtml",
+      "TargetPath": "Views\\Group\\SearchGroup.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Group\\AddMaterial.cshtml",
       "TargetPath": "Views\\Group\\AddMaterial.cshtml",
       "FileKind": "mvc"

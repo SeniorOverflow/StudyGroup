@@ -1,8 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+ <div class="text-center">
+        <h1 class="display-4">Welcome to Study Group</h1>
+    @if(ViewBag.IsNotUser)
+    {
+            <p> Тут нужно написать описание нашего проекта </p>
+    }
+    <h3>Вы можите:</h3>
+     <a  method ="get" asp-controller="Group" asp-action="CreateGroup" class="btn btn-sm-2 btn-dark">Создать</a>
+     <h3>Или</h3>
+     <a  method ="get" asp-controller="Group" asp-action="SearchGroup" class="btn btn-sm-2 btn-dark">Найти</a>
+ </div>

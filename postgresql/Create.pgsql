@@ -90,6 +90,8 @@ CREATE TABLE gr_abilities(
 
 CREATE TABLE user_group (
 	id serial,
+	id_user 		int 		REFERENCES users(id)
+		ON DELETE CASCADE ON UPDATE CASCADE								not null,
 	id_group_role	int 		REFERENCES group_roles(id)
 		ON DELETE CASCADE ON UPDATE CASCADE			 	 				not null,
 	id_group		int			REFERENCES groups(id)				
