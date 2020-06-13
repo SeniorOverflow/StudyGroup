@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using System.Text.RegularExpressions;
 using System.IO;
 using Microsoft.AspNetCore.Routing;
+using System.Drawing;
 
 namespace StudyGroup.Controllers
 {
@@ -22,10 +23,31 @@ namespace StudyGroup.Controllers
         {
             return await Task.Run(() => View());
         } 
+        bool CheckTypePicture(string type) => type == "png" ||  type == "jpeg" ||  type == "jpg" ;
+        public async Task<IActionResult> ReadUserImage(Guid idPic, IFormFile photo)
+        {
+          
+            var type = photo.FileName.Split('.').Last();
+            var NewNamePicture = "" + idPic + "." + type;
+            var filePath = "wwwroot\\Pictures\\"+ NewNamePicture;
+            
+            if(CheckTypePicture(type.ToLower()) && photo.Length > 0)
+            {
+                using (var s = new FileStream(filePath,FileMode.OpenOrCreate))
+                {
+                    await photo.CopyToAsync(s);
+                }
+            } 
+            return Ok(new {photo.Length});
+        } 
 
         [HttpPost]
-        public async Task<IActionResult> CreateGroup(string name)
+        public async Task<IActionResult> CreateGroup(string title, string description, IFormFile  photoGroup = null)
         {
+            Console.WriteLine(photoGroup.Length);
+            var idPic = new Guid();
+            await ReadUserImage(idPic, photoGroup);
+         
             return await Task.Run(() => RedirectToAction("Index", new RouteValueDictionary( 
                         new { controller = "Home", action = "Index"} )));
         } 

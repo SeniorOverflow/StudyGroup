@@ -1,1 +1,31 @@
 <h1>CreateGroup</h1>
+
+
+<form method="post" enctype="multipart/form-data" asp-controller="Group" asp-action="CreateGroup"  >
+    <div class="card" style="width: 24rem;">
+
+        <div class="card-body">    
+            <div class="input-group mb-2">
+                <label for="file">Выберите фото</label>
+                <input type="File"  name="photoGroup" >
+            </div>
+            
+
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                <div class="input-group-text">Название</div>
+                </div>
+                <input type="text" class="form-control" name="title" placeholder="Название " value="">  
+            </div>
+
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                <div class="input-group-text">Описание</div>
+                </div>
+                <input type="text" class="form-control" name="description" placeholder="Описание" value="">
+            </div>
+            
+            <input type="submit"  class="btn btn-sm-2 btn-dark" value="Создать">
+        </div>
+    </div>
+</form>
