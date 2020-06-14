@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.IO;
 using Microsoft.AspNetCore.Routing;
 using System.Drawing;
+using static StudyGroup.Models.Picture;
 
 namespace StudyGroup.Controllers
 {
@@ -23,34 +24,64 @@ namespace StudyGroup.Controllers
         {
             return await Task.Run(() => View());
         } 
-        bool CheckTypePicture(string type) => type == "png" ||  type == "jpeg" ||  type == "jpg" ;
-        public async Task<IActionResult> ReadUserImage(Guid idPic, IFormFile photo)
-        {
-          
-            var type = photo.FileName.Split('.').Last();
-            var NewNamePicture = "" + idPic + "." + type;
-            var filePath = "wwwroot\\Pictures\\"+ NewNamePicture;
-            
-            if(CheckTypePicture(type.ToLower()) && photo.Length > 0)
-            {
-                using (var s = new FileStream(filePath,FileMode.OpenOrCreate))
-                {
-                    await photo.CopyToAsync(s);
-                }
-            } 
-            return Ok(new {photo.Length});
-        } 
+       
 
+
+        private Guid GetIdForPic()
+        {
+            var db = new DbConfig();
+            var NewIdPic = Guid.NewGuid();
+            while(true)
+            {
+                 var sqlQuary = $@"  SELECT guid 
+                                    From Pictures 
+                                WHERE guid = {NewIdPic}";
+                var picId = db.GetSqlQuaryData(sqlQuary);
+                if(picId.Count() > 0)
+                    NewIdPic = Guid.NewGuid();
+                else
+                    break; 
+            }
+            return NewIdPic;
+        }
+       
         [HttpPost]
         public async Task<IActionResult> CreateGroup(string title, string description, IFormFile  photoGroup = null)
         {
-            Console.WriteLine(photoGroup.Length);
-            var idPic = new Guid();
-            await ReadUserImage(idPic, photoGroup);
-         
+            
+            var idPic = GetIdForPic();
+            var downloadCode = await Picture.Download(idPic, photoGroup);
+            if(downloadCode == DownloadCodes.Fine)
+            {
+                var db = new DbConfig();
+                var sr = new Screening();
+                var photoType =  sr.GetScr() + ""+ photoGroup.ContentType + sr.GetScr();
+                var sqlQuaryCreateGroup = $@"
+                    INSERT INTO public.groups(
+                        title, description, id_pic)
+                    VALUES ({title}, {description}, {idPic}); ";
+
+                var sqlQuaryCreatePicture = $@"
+                    INSERT INTO public.pictures(guid, type_pic)
+                    VALUES ({idPic}, {photoType});";
+
+
+                var sqlQuarySetUserAdminGroup = $@"
+                    INSERT INTO 
+                ";
+                 // memberships
+                 // group_roles
+
+                db.UseSqlQuary(sqlQuaryCreatePicture);
+                db.UseSqlQuary(sqlQuaryCreateGroup);
+                
+                return await Task.Run(() => RedirectToAction("Index", new RouteValueDictionary( 
+                            new { controller = "Home", action = "Index"} )));
+            }
             return await Task.Run(() => RedirectToAction("Index", new RouteValueDictionary( 
-                        new { controller = "Home", action = "Index"} )));
+                            new { controller = "Home", action = "Index"} )));
         } 
+
         public async Task<IActionResult> ShowGroup(int idGroup)
         {
             return await Task.Run(() => View());
@@ -68,7 +99,7 @@ namespace StudyGroup.Controllers
         } 
 
         [HttpGet]
-        public async Task<IActionResult> AddGroupPost()
+        public async Task<IActionResult> AddPost()
         {
             return await Task.Run(() => View());
         } 

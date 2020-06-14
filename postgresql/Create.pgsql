@@ -1,6 +1,21 @@
 
 CREATE EXTENSION pgcrypto;
 
+CREATE TYPE type_file AS ENUM ('url', 'doc', 'photo' , 'video');
+
+CREATE TYPE picture_type AS ENUM ('jpg', 'png', 'jpeg');
+
+CREATE TABLE pictures (
+	guid 	uuid not null,
+	type_pic 	picture_type not null,
+	primary key(guid)
+);
+CREATE TABLE files (
+	guid uuid not null,
+	file_tipe type_file not null,
+	primary key(guid)
+);
+
 CREATE TABLE users (
 	id serial,
 	first_name 		varchar(50) 	default 'Не указанно' 	not null,
@@ -8,7 +23,8 @@ CREATE TABLE users (
 	login			varchar(50) 	UNIQUE 					not null,
 	password 		text 									not null,
 	mail 			text 			UNIQUE					not null,
-	picture_profile varchar(100) 	default 'NaPicture.png' not null,
+	id_pic 			uuid			REFERENCES pictures(guid)
+		ON DELETE CASCADE ON UPDATE CASCADE			 		not null,
 	primary key(id)
 );
 
@@ -20,6 +36,8 @@ CREATE TABLE roles (
 	description 		text 			default'NaD'				not null,
 	primary key(id)
 );
+
+
 
 CREATE TABLE user_role(
 	id serial,
@@ -50,7 +68,8 @@ CREATE TABLE groups (
 	id serial,
 	title			varchar(50) 							not null,
 	description		text										null,
-	picture 		varchar(100) 	default 'NaPicture.png' not null,
+	id_pic 			uuid				REFERENCES pictures(guid)
+		ON DELETE CASCADE ON UPDATE CASCADE			 		not null,
 	primary key(id)
 );
 
@@ -120,13 +139,13 @@ CREATE TABLE confirmation_email(
 	primary key(id)
 );
 
-CREATE TYPE type_file AS ENUM ('url', 'doc', 'photo' , 'video');
 
 CREATE TABLE	materials 		(
 	id serial,
 	title 				varchar(50)									not null,
 	url_on_file			varchar(100)								not null,
-	type 				type_file									not null,
+	id_file 			uuid				REFERENCES files(guid)
+		ON DELETE CASCADE ON UPDATE CASCADE			 				not null,
 	primary key(id)
 );
 
@@ -138,12 +157,14 @@ CREATE TABLE	group_materials (
 		ON DELETE CASCADE ON UPDATE CASCADE							not null,
 	primary key(id)
 );
+
 CREATE TABLE	homeworks 		(
 	id serial,
 	title 				varchar(50)									not null,
 	deadline 			TIMESTAMP									not null,
 	url_on_file			varchar(100)								not null,
-	type 				type_file									not null,
+	id_file 			uuid				REFERENCES files(guid)
+		ON DELETE CASCADE ON UPDATE CASCADE			 				not null,
 	primary key(id)
 );
 
@@ -156,7 +177,7 @@ CREATE TABLE	group_homeworks (
 	primary key(id)
 );
 
-CREATE TABLE	h_assessment 	(
+CREATE TABLE	h_assessment (
 	id serial,
 	id_user 			int 			REFERENCES users(id)
 		ON DELETE CASCADE ON UPDATE CASCADE							not null,
@@ -167,7 +188,7 @@ CREATE TABLE	h_assessment 	(
 	primary key(id)
 );
 
-CREATE TABLE	tests			(
+CREATE TABLE	tests (
 	id serial, 
 	title 			varchar(50)										not null,
 	description		text											not null,
@@ -193,16 +214,16 @@ CREATE TABLE	test_question	(
 
 CREATE TABLE	answer		(
 	id serial,
-	id_question	int 			REFERENCES test_question(id)
-		ON DELETE CASCADE	ON UPDATE CASCADE						not null,
-	is_true		boolean												not null,
+	id_question		int 				REFERENCES test_question(id)
+			ON DELETE CASCADE	ON UPDATE CASCADE						not null,
+	is_true			boolean												not null,
 	primary key(id)
 );
 
 CREATE TABLE	t_assessment	(
 
 	id serial,
-	id_user 			int 			REFERENCES users(id)
+	id_user 		int 			REFERENCES users(id)
 		ON DELETE CASCADE ON UPDATE CASCADE							not null,
 	id_test 		int 			REFERENCES tests(id)
 		ON DELETE CASCADE ON UPDATE CASCADE							not null,
