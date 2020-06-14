@@ -1,6 +1,10 @@
 
 .vscode/launch.json
 .vscode/tasks.json
+bin
+wwwroot/Pictures
+
+.vscode
 *.cache
 obj/Debug/netcoreapp3.1/StudyGroup.csprojAssemblyReference.cache
 obj/Debug/netcoreapp3.1/StudyGroup.csprojAssemblyReference.cache
