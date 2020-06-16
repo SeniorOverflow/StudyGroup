@@ -77,7 +77,7 @@ CREATE TABLE memberships (
 	id serial,
 	id_group			int					REFERENCES groups(id)
 		ON DELETE CASCADE ON UPDATE CASCADE			 			 		not null,
-	users_count   		int 				default '0' 				not null,
+	users_count   		int 				default '20' 				not null,
 	memory_size			int 				default '5'					not null,
 	date_begin 			TIMESTAMP 										not null,
 	price 				decimal(10,2) 		default '0.00'				not null,
@@ -184,7 +184,8 @@ CREATE TABLE	h_assessment (
 	id_homework 		int 			REFERENCES homeworks(id)
 		ON DELETE CASCADE ON UPDATE CASCADE							not null,
 	assessment 			SMALLINT									not null,
-	url_on_file			varchar(100)								not null,
+	id_file 			uuid				REFERENCES files(guid)
+		ON DELETE CASCADE ON UPDATE CASCADE			 				not null,
 	primary key(id)
 );
 
