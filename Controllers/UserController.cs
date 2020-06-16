@@ -31,20 +31,13 @@ namespace StudyGroup.Controllers
 
             return assessment;   
         }
-        private int GetUserId(string login = null) 
+        public int GetUserId(string login = null)  // перенести в Model User
         {
-            var db = new DbConfig();
-            var sr  = new Screening();
             login = 
                 string.IsNullOrEmpty(login)
                 ? HttpContext.Session.GetString("login") 
                 : login;
-                
-            var sqlQuary = "select id from users where login = " +sr.GetScr()+login+sr.GetScr();
-            var idUser = -1;
-            foreach(var userData in db.GetSqlQuaryData(sqlQuary))
-                idUser = Convert.ToInt32(userData[0]);
-            return idUser;
+            return  UserModel.GetId(login);
         }
 
         private bool IsRegisterEmail(string Email)
@@ -245,7 +238,7 @@ namespace StudyGroup.Controllers
             else
             {
                 var id_user = GetUserId();
-                var _user = new User();
+                var _user = new UserModel();
                 var tmp_login = new List<List<string>>();
                 Console.WriteLine(GetUserId());
                 var  sqlQuary = "SELECT id,login,first_name,second_name,picture_profile "+
@@ -286,7 +279,7 @@ namespace StudyGroup.Controllers
                 userData = item;
                 
             
-            var user = new User();
+            var user = new UserModel();
             
             user.first_name = userData[0];
             user.second_name = userData[1];

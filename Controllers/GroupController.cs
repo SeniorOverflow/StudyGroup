@@ -55,28 +55,36 @@ namespace StudyGroup.Controllers
             {
                 var db = new DbConfig();
                 var sr = new Screening();
+                var login = 
+                    HttpContext.Session.GetString("login") ;
+                var userId = UserModel.GetId(login);
                 var photoType =  sr.GetScr() + ""+ photoGroup.ContentType + sr.GetScr();
                 var sqlQuaryCreateGroup = $@"
-                    INSERT INTO public.groups(
-                        title, description, id_pic)
-                    VALUES ({title}, {description}, {idPic}); ";
+                    INSERT INTO groups(
+                        title, description, id_pic , id_founder)
+                    VALUES ({title}, {description}, {idPic} ,{userId}); ";
 
                 var sqlQuaryCreatePicture = $@"
-                    INSERT INTO public.pictures(guid, type_pic)
+                    INSERT INTO pictures(guid, type_pic)
                     VALUES ({idPic}, {photoType});";
 
-
-                var sqlQuarySetUserAdminGroup = $@"
-                    INSERT INTO 
-                ";
-                 // memberships
-                 // group_roles
+                var sqlQuaryGetIdGroup = $@"
+                    SELECT id 
+                        FROM group 
+                    WHERE id_founder = {userId}  
+                    ORDER BY id DESC
+                    LIMIT 1 ";
+                
+                var groupData = db.GetSqlQuaryData(sqlQuaryGetIdGroup);
+                var idGroup = -1;
+                foreach(var item in groupData)
+                    idGroup = Convert.ToInt32(item[0]);
 
                 db.UseSqlQuary(sqlQuaryCreatePicture);
                 db.UseSqlQuary(sqlQuaryCreateGroup);
                 
                 return await Task.Run(() => RedirectToAction("Index", new RouteValueDictionary( 
-                            new { controller = "Home", action = "Index"} )));
+                            new { controller = "Group", action = "ShowGroup", idGroup = idGroup } )));
             }
             return await Task.Run(() => RedirectToAction("Index", new RouteValueDictionary( 
                             new { controller = "Home", action = "Index"} )));

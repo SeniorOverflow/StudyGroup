@@ -70,8 +70,12 @@ CREATE TABLE groups (
 	description		text										null,
 	id_pic 			uuid				REFERENCES pictures(guid)
 		ON DELETE CASCADE ON UPDATE CASCADE			 		not null,
+	id_founder			 	int 	REFERENCES users(id)
+		ON DELETE CASCADE ON UPDATE CASCADE			 			 		not null,
 	primary key(id)
 );
+
+
 
 CREATE TABLE memberships (
 	id serial,
@@ -86,8 +90,11 @@ CREATE TABLE memberships (
 
 CREATE TABLE  group_roles (
 	id serial,
+	id_group			int					REFERENCES groups(id)
+		ON DELETE CASCADE ON UPDATE CASCADE			 			 	not null,
 	name 				varchar(50) 	UNIQUE						not null,
 	description 		text 			default'NaD'				not null,
+	is_change			boolean 		default 'false'				not null,
 	primary key(id)
 );
 
@@ -162,7 +169,6 @@ CREATE TABLE	homeworks 		(
 	id serial,
 	title 				varchar(50)									not null,
 	deadline 			TIMESTAMP									not null,
-	url_on_file			varchar(100)								not null,
 	id_file 			uuid				REFERENCES files(guid)
 		ON DELETE CASCADE ON UPDATE CASCADE			 				not null,
 	primary key(id)
