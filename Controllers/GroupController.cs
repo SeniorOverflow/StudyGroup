@@ -30,13 +30,15 @@ namespace StudyGroup.Controllers
         private Guid GetIdForPic()
         {
             var db = new DbConfig();
+            var sr = new Screening();
             var NewIdPic = Guid.NewGuid();
             while(true)
             {
                  var sqlQuary = $@"  SELECT guid 
                                     From Pictures 
-                                WHERE guid = {NewIdPic}";
+                                WHERE guid = {sr.GetScr() + NewIdPic + sr.GetScr()}";
                 var picId = db.GetSqlQuaryData(sqlQuary);
+
                 if(picId.Count() > 0)
                     NewIdPic = Guid.NewGuid();
                 else
@@ -58,32 +60,35 @@ namespace StudyGroup.Controllers
                 var login = 
                     HttpContext.Session.GetString("login") ;
                 var userId = UserModel.GetId(login);
-                var photoType =  sr.GetScr() + ""+ photoGroup.ContentType + sr.GetScr();
+
+                var photoType = sr.GetScr() +  photoGroup.FileName.Split(".").Last() + sr.GetScr();
                 var sqlQuaryCreateGroup = $@"
                     INSERT INTO groups(
                         title, description, id_pic , id_founder)
-                    VALUES ({title}, {description}, {idPic} ,{userId}); ";
-
+                    VALUES ({sr.GetScr() +title +sr.GetScr()}, 
+                            {sr.GetScr() + description + sr.GetScr()}, 
+                            {sr.GetScr() + idPic + sr.GetScr() } ,{userId}); ";
+               
                 var sqlQuaryCreatePicture = $@"
                     INSERT INTO pictures(guid, type_pic)
-                    VALUES ({idPic}, {photoType});";
+                    VALUES ({sr.GetScr() + idPic + sr.GetScr() }, {photoType});";
 
                 var sqlQuaryGetIdGroup = $@"
                     SELECT id 
-                        FROM group 
+                        FROM groups 
                     WHERE id_founder = {userId}  
                     ORDER BY id DESC
                     LIMIT 1 ";
-                
+                    
+                db.UseSqlQuary(sqlQuaryCreatePicture);
+                db.UseSqlQuary(sqlQuaryCreateGroup);
                 var groupData = db.GetSqlQuaryData(sqlQuaryGetIdGroup);
                 var idGroup = -1;
                 foreach(var item in groupData)
                     idGroup = Convert.ToInt32(item[0]);
 
-                db.UseSqlQuary(sqlQuaryCreatePicture);
-                db.UseSqlQuary(sqlQuaryCreateGroup);
-                
-                return await Task.Run(() => RedirectToAction("Index", new RouteValueDictionary( 
+
+                return await Task.Run(() => RedirectToAction("ShowGroup", new RouteValueDictionary( 
                             new { controller = "Group", action = "ShowGroup", idGroup = idGroup } )));
             }
             return await Task.Run(() => RedirectToAction("Index", new RouteValueDictionary( 

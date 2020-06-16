@@ -24,7 +24,8 @@ CREATE TABLE users (
 	password 		text 									not null,
 	mail 			text 			UNIQUE					not null,
 	id_pic 			uuid			REFERENCES pictures(guid)
-		ON DELETE CASCADE ON UPDATE CASCADE			 		not null,
+		ON DELETE CASCADE ON UPDATE CASCADE		
+		default '00000000-0000-0000-0000-000000000000'	 		,
 	primary key(id)
 );
 
@@ -92,7 +93,7 @@ CREATE TABLE  group_roles (
 	id serial,
 	id_group			int					REFERENCES groups(id)
 		ON DELETE CASCADE ON UPDATE CASCADE			 			 	not null,
-	name 				varchar(50) 	UNIQUE						not null,
+	name 				varchar(50) 								not null,
 	description 		text 			default'NaD'				not null,
 	is_change			boolean 		default 'false'				not null,
 	primary key(id)

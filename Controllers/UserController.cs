@@ -241,7 +241,7 @@ namespace StudyGroup.Controllers
                 var _user = new UserModel();
                 var tmp_login = new List<List<string>>();
                 Console.WriteLine(GetUserId());
-                var  sqlQuary = "SELECT id,login,first_name,second_name,picture_profile "+
+                var  sqlQuary = "SELECT id,login,first_name,second_name,id_pic "+
                                         "FROM users WHERE users.id = "+id_user;
                 var userData = new List<string>();
                 foreach (var item in db.GetSqlQuaryData(sqlQuary))
