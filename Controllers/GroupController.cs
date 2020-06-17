@@ -78,7 +78,7 @@ namespace StudyGroup.Controllers
                         FROM groups 
                     WHERE id_founder = {userId}  
                     ORDER BY id DESC
-                    LIMIT 1 ";
+                    LIMIT 1 ;";
                     
                 db.UseSqlQuary(sqlQuaryCreatePicture);
                 db.UseSqlQuary(sqlQuaryCreateGroup);
@@ -183,6 +183,35 @@ namespace StudyGroup.Controllers
         [HttpGet]
         public async Task<IActionResult> SearchGroup(string name = null)
         {
+            var  sr = new Screening();
+            var db = new DbConfig();
+            var sqlQuarySelectGroupByName = "";
+            if(string.IsNullOrEmpty(name))
+                sqlQuarySelectGroupByName = $@"
+                SELECT id, title, description, pictures.guid , type_pic 
+                    FROM groups inner join pictures on
+                        groups.id_pic = pictures.guid 
+                ";
+            else
+                sqlQuarySelectGroupByName = $@"
+                SELECT id, title, description, pictures.guid , type_pic 
+                    FROM groups inner join pictures on
+                        groups.id_pic = pictures.guid  WHERE title = {sr.GetScr() + name + sr.GetScr()}
+                ";
+            var groups = new List<GroupModel>();
+            var groupsData = db.GetSqlQuaryData(sqlQuarySelectGroupByName);
+
+
+            foreach(var item in groupsData)
+                {
+                    var group = new GroupModel(item[3], item[4]);
+                    group.idGroup = Int32.Parse(item[0]);
+                    group.title = item[1];
+                    group.description = item[2];
+                    groups.Add(group);
+                }
+            ViewBag.Groups = groups;
+            ViewBag.SearchName = name;
             return await Task.Run(() => View());
         }
         

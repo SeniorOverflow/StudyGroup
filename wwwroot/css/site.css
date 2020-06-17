@@ -7,6 +7,14 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+.card_css{
+    margin-bottom: auto;
+    display: inline-block;
+    width: 18rem;
+    height: 24rem;
+    padding: 2rem;
+    
+}
 /* Provide sufficient contrast against white background */
 a {
   color: #242424;

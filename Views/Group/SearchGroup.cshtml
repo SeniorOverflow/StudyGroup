@@ -1,1 +1,28 @@
 <h1>SearchGroup</h1>
+
+
+
+<form method="get" asp-controller="Group" asp-action="SearchGroup"  style="width: 18rem;">
+    <div class="md-form mt-0">
+    <input   class="form-control" name="name" type="text" placeholder="Search" aria-label="Search">
+    </div>
+</form>
+<br>
+
+
+    @foreach (var group in ViewBag.Groups)
+    {
+        <div class=" card_css " >
+        <div class=" card " style="width: 16rem; height:22rem" >
+            <img class="card-img-top" src="@group.picture" alt="Card image cap" style="height: 50%;">
+            <div class="card-body">
+                <h5 class="card-title">@group.title</h5>
+                <p class="card-text">@group.description</p>
+            </div>
+            <div class="card-footer">
+                 <a  method ="get" asp-controller="Group" asp-action="ShowGroup" asp-route-idGroup = "@group.idGroup" class="btn btn-sm-2 btn-dark">Открыть</a>
+            </div>
+        </div>
+        </div>
+    }
+
