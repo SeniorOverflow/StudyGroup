@@ -151,9 +151,19 @@ CREATE TABLE confirmation_email(
 CREATE TABLE	materials 		(
 	id serial,
 	title 				varchar(50)									not null,
-	url_on_file			varchar(100)								not null,
+	description			text												,
 	id_file 			uuid				REFERENCES files(guid)
 		ON DELETE CASCADE ON UPDATE CASCADE			 				not null,
+	primary key(id)
+);
+
+CREATE TABLE 	group_post (
+	id serial,
+	title				varchar(50)									not null,
+	description	 		text										not null,
+		id_file 			uuid				REFERENCES files(guid)
+		ON DELETE CASCADE ON UPDATE CASCADE			 						,
+	date				TIMESTAMP				default'now()'		not null,
 	primary key(id)
 );
 

@@ -12,7 +12,7 @@ namespace StudyGroup.Models
       public  string description ;
       public  string picture ;
 
-      public GroupModel(string GUID, string typePic)
+      public GroupModel(string GUID =  null, string typePic = null)
       {
           picture = GUID + "." + typePic;
       }

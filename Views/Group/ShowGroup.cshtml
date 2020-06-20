@@ -1,1 +1,22 @@
-<h1>ShowGroup</h1>
+
+<h1 > @ViewBag.Group.title</h1>
+
+<div class= "row">
+ <img src="~/Pictures/@ViewBag.Group.picture" class="card-img-top  im_product" style="height:400px; width : 400px;" alt="...">
+ <div class= "product">
+   
+     <p>@ViewBag.Group.description</p>
+   
+ </div>
+
+</div>
+
+
+
+<hr>
+    
+<form method="post" asp-controller="Group" asp-action="AddPost">
+    <input hidden name="idGroup" />
+    <input  type="text "  name="postText" placeholder="Что нового ?"/>
+</form>
+    

@@ -97,6 +97,25 @@ namespace StudyGroup.Controllers
 
         public async Task<IActionResult> ShowGroup(int idGroup)
         {
+            var db = new DbConfig();
+            var sqlQuaryShowGroup = $@"
+                 SELECT id, title, description, id_founder, pictures.guid , type_pic 
+                    FROM groups inner join pictures on
+                        groups.id_pic = pictures.guid  WHERE groups.id = {idGroup}
+            ";
+            GroupModel group = new GroupModel();
+            var idFounder = -1;
+            foreach(var item in db.GetSqlQuaryData(sqlQuaryShowGroup))
+            {
+                idFounder = Int32.Parse(item[3]);
+                group  = new GroupModel(item[4], item[5]);
+                group.idGroup = Int32.Parse(item[0]);
+                group.title = item[1];
+                group.description = item[2];
+            }
+            // тут надо доделать возможности пользователя 
+            // 17.06.2020 Igor Popov
+            ViewBag.Group = group;
             return await Task.Run(() => View());
         } 
 
@@ -111,14 +130,13 @@ namespace StudyGroup.Controllers
             return await Task.Run(() => View());
         } 
 
-        [HttpGet]
-        public async Task<IActionResult> AddPost()
-        {
-            return await Task.Run(() => View());
-        } 
+        
         [HttpPost]
-        public async Task<IActionResult> AddPost(string title)
+        public async Task<IActionResult> AddPost(int idGroup, string text, IFormFile PostFile)
         {
+
+            
+
             return await Task.Run(() => View());
         } 
 
