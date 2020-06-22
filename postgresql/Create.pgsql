@@ -131,7 +131,8 @@ CREATE TABLE block_user (
 	id serial,
 	id_user 			int 			REFERENCES users(id)
 		ON DELETE CASCADE ON UPDATE CASCADE					 		not null,
-	id_group			int				REFERENCES groups(id)		not null,
+	id_group		int			REFERENCES groups(id)				
+		ON DELETE CASCADE ON UPDATE CASCADE			 	 			not null,
 	date_begin 			TIMESTAMP 									not null,
 	date_end 			TIMESTAMP 									not null,
 	cause 				text 			default'NaC' 				not null,
@@ -157,15 +158,21 @@ CREATE TABLE	materials 		(
 	primary key(id)
 );
 
+
+
 CREATE TABLE 	group_post (
 	id serial,
+	id_group		int			REFERENCES groups(id)				
+		ON DELETE CASCADE ON UPDATE CASCADE			 	 			not null,
 	title				varchar(50)									not null,
 	description	 		text										not null,
-		id_file 			uuid				REFERENCES files(guid)
+	id_file 			uuid				REFERENCES files(guid)
 		ON DELETE CASCADE ON UPDATE CASCADE			 						,
 	date				TIMESTAMP				default'now()'		not null,
 	primary key(id)
 );
+
+
 
 CREATE TABLE	group_materials (
 	id serial,

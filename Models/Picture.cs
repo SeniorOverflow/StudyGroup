@@ -16,7 +16,7 @@ using System.Drawing;
 using StudyGroup.Controllers;
 namespace StudyGroup.Models
 {
-    public class Picture
+    public static class Picture
     {
 
         public enum DownloadCodes { Fine = 0, NotImage = 1}

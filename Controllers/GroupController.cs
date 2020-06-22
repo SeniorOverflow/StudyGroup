@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using System.IO;
 using Microsoft.AspNetCore.Routing;
 using System.Drawing;
-using static StudyGroup.Models.Picture;
+
 
 namespace StudyGroup.Controllers
 {
@@ -53,7 +53,7 @@ namespace StudyGroup.Controllers
             
             var idPic = GetIdForPic();
             var downloadCode = await Picture.Download(idPic, photoGroup);
-            if(downloadCode == DownloadCodes.Fine)
+            if(downloadCode == Picture.DownloadCodes.Fine)
             {
                 var db = new DbConfig();
                 var sr = new Screening();
@@ -115,7 +115,29 @@ namespace StudyGroup.Controllers
             }
             // тут надо доделать возможности пользователя 
             // 17.06.2020 Igor Popov
+
+
+            var sqlQuaryGetPostGroup = $@"
+                SELECT id, title, description, date, id_file 
+                    FROM  group_post 
+                WHERE id_group = {idGroup}
+            ";
+            var groupPosts = db.GetSqlQuaryData(sqlQuaryGetPostGroup);
+            var posts = new List<PostModel>();
+
+            foreach(var item in groupPosts)
+            {
+                var post = new PostModel();
+                post.id = Int32.Parse(item[0]);
+                post.title = item[1];
+                post.text = item[2];
+                post.date = item[3];
+                posts.Add(post);
+                
+            }
+            ViewBag.Posts = posts;
             ViewBag.Group = group;
+            
             return await Task.Run(() => View());
         } 
 
@@ -132,12 +154,25 @@ namespace StudyGroup.Controllers
 
         
         [HttpPost]
-        public async Task<IActionResult> AddPost(int idGroup, string text, IFormFile PostFile)
+        public async Task<IActionResult> AddPost(int idGroup, string title, string text , IFormFile file = null )
         {
-
+            //here need check (is user group )
+            //add change to upload file with some material .doc  ect
+            // here a early version. Please if u want  upgrade the func  u can do it :)
+            // Last date edit 21.06.2020 
             
+            var db = new DbConfig();
+            var sr = new Screening();
+            
+            var sqlQuaryAddPost = $@"
+               INSERT INTO public.group_post( id_group, title, description)
+	            VALUES ( {sr.GetScr() + idGroup + sr.GetScr()}, 
+                         {sr.GetScr() + title + sr.GetScr()},
+                         {sr.GetScr() + text + sr.GetScr()});";
+            db.UseSqlQuary(sqlQuaryAddPost);
 
-            return await Task.Run(() => View());
+            return await Task.Run(() => RedirectToAction("ShowGroup", new RouteValueDictionary( 
+                            new { controller = "Group", action = "ShowGroup", idGroup = idGroup } )));
         } 
 
         [HttpGet]

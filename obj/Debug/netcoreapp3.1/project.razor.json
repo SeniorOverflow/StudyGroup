@@ -20636,6 +20636,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Group\\ShowTest.cshtml",
+      "TargetPath": "Views\\Group\\ShowTest.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
@@ -20648,6 +20653,11 @@
     {
       "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\Views\\User\\Groups.cshtml",
       "TargetPath": "Views\\User\\Groups.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DonEn\\Desktop\\Git\\StudyGroup\\ShowTests.cshtml",
+      "TargetPath": "ShowTests.cshtml",
       "FileKind": "mvc"
     },
     {
